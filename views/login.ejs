@@ -9,7 +9,7 @@
 </head>
 <body>
     <section class="main">
-      <form id="myform" method="post" action="/route/login">
+      <form id="myForm" method="post" action="/login">
           <h2>Login</h2>
             <div class="form-outline mb-4">
               <label class="form-label" for="name">User name</label>
@@ -21,11 +21,14 @@
               <input type="password" id="pass" class="form-control" name="password" required />
             </div>
           
+            <div class="col d-flex justify-content-center">
+              <% if (errorMessage) { %>
+                <p style="color: red;"><%= errorMessage %></p>
+            <% } %>
+            </div>
             <div class="row mb-4">
               <div class="col d-flex justify-content-center">
-                <% if (typeof error !== 'undefined') { %>
-                  <p style="color: red;"><%= error %></p>
-                <% } %>
+
                 <a href="/signup" class="create">Create new account ?</a>
               </div>
           

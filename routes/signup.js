@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage : storage})
 
+
 router.post('/signup',upload.single('profileImage'), async(req,res)=>{
     const {username, password, confirmPassword, phone, address, email} = req.body;
     if(password != confirmPassword){
