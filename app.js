@@ -16,17 +16,17 @@ app.use(session({
 }))
 app.use(nocache());
 
-app.use(require('./routes/login'));
-app.use(require('./routes/signup'));
-app.use(require('./routes/userDashboard'))
-app.use(require('./routes/userLogout'))
+app.use(require('./routes/user-routes/login'));
+app.use(require('./routes/user-routes/signup'));
+app.use(require('./routes/user-routes/userDashboard'))
+app.use(require('./routes/user-routes/userLogout'))
+app.use(require('./routes/admin-routes/adminDashboard'))
 
 app.get('/', (req, res)=>{
-    res.render("login",{errorMessage : ''});
+    res.render("./user/login",{errorMessage : ''});
 })
-
 app.get('/signup',(req, res)=>{
-    res.render("signup");
+    res.render("./user/signup");
 })
 
 

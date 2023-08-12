@@ -6,7 +6,7 @@ router.get('/dashboard',(req,res)=>{
         return res.redirect('/')
     }
     const currentUser = req.session.user
-    res.render('dashboard', {currentUser})
+    res.render('./user/dashboard', {currentUser})
 });
 
 module.exports = router
