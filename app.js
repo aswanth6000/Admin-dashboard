@@ -21,6 +21,7 @@ app.use(require('./routes/user-routes/signup'));
 app.use(require('./routes/user-routes/userDashboard'))
 app.use(require('./routes/user-routes/userLogout'))
 app.use(require('./routes/admin-routes/adminDashboard'))
+app.use(require('./routes/admin-routes/adminLogout'))
 
 app.get('/', (req, res)=>{
     res.render("./user/login",{errorMessage : ''});
