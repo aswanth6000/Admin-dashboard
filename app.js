@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const session = require('express-session')
+const session = require('express-session');
+const nocache = require('nocache')
 
 
 app.set('view engine', 'ejs')
@@ -13,12 +14,15 @@ app.use(session({
     resave : false,
     saveUninitialized : true
 }))
+app.use(nocache());
 
 app.use(require('./routes/login'));
 app.use(require('./routes/signup'));
+app.use(require('./routes/userDashboard'))
+app.use(require('./routes/userLogout'))
 
 app.get('/', (req, res)=>{
-    res.render("login", { errorMessage: req.session.errorMessage });
+    res.render("login",{errorMessage : ''});
 })
 
 app.get('/signup',(req, res)=>{

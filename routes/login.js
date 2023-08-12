@@ -7,12 +7,10 @@ router.post('/login', async (req,res)=>{
     const {username , password} = req.body; 
     const user = await User.findOne({username});
     if(!user || !bcrypt.compareSync(password, user.password)){
-        req.session.errorMessage = "Invalid username or password";
-        return res.redirect('/');
+        return res.render('login',{errorMessage : "Invalid username or password"});
     }
     req.session.user = user; 
-    req.session.errorMessage = null;
-    res.redirect('/home')
+    res.redirect('/dashboard')
 })
 
 module.exports = router
