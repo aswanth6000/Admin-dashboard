@@ -20,7 +20,6 @@ const upload = multer({ storage: storage });
 router.post('/edited/:userId', isAdminLoggedIn, upload.single('profileImage'), async (req, res) => {
     const userId = req.params.userId;
     const { newUserName, newAddress, newPhone } = req.body;
-    console.log(req.body); // This should now log the parsed form data
     const user = await User.findById(userId);
     try {
         user.username = newUserName;

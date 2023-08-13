@@ -14,16 +14,10 @@
         <div class="container-fluid">
           <a class="navbar-brand">Admin dashboard</a>
 
-          <form class="d-flex input-group w-auto">
-            <input
-              type="search"
-              class="form-control rounded"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="search-addon"
-            />
+          <form class="d-flex input-group w-auto" method="get" action="/admindashboard ">
+            <input type="search" class="form-control rounded" placeholder="Search by Username" name="search" aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
-                <a href="#!" class="btn btn-primary">Search</a>
+                <button type="submit" class="btn btn-primary">Search</button>
             </span>
           </form>
           <a href="/adminlogout" class="btn btn-danger" onclick="return confirm('Are you sure you want to log out?');">Logout</a>
@@ -31,6 +25,7 @@
       </nav>
     <div class="main" style="height: auto; width: 100%;">
         <div class="scrl" style="display: flex;flex-direction: row;flex-wrap: wrap;">
+          <% if(users.length > 0){ %>
           <% users.forEach(user => { %>
             <div class="card" style="width: 300px;margin-left: 30px;margin-top: 30px;">
                     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -48,7 +43,10 @@
                 </div>
               </div>
               <% }) %>
-        </div>
+              <% } else { %>
+                <h1>No users found</h1>
+                <% } %>
+            </div>
     </div>
 </body>
 <script>

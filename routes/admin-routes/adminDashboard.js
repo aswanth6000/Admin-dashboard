@@ -5,8 +5,14 @@ const {isAdminLoggedIn} = require('../../middlewares/middleware')
 
 router.get('/admindashboard',isAdminLoggedIn, async (req,res)=>{
     try{
-        const users = await User.find()
-        res.render("./admin/admin-dash", {users})
+        const searchQuery = req.query.search || '';
+        let users;
+        if(searchQuery){
+            users = await User.find({username : {$regex : searchQuery, $options : 'i'}})
+        }else{
+            users = await User.find()
+        }
+        res.render("./admin/admin-dash", {users, searchQuery})
     }catch(error){
         console.log(error);
     }
